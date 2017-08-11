@@ -37,7 +37,7 @@ class YTS
         $query_term = 0,
         $page = 1,
         $minimum_rating = 0,
-        $genre = 'All',
+        $genre = '',
         $sort_by = 'date-added',
         $order_by = 'desc',
         $with_rt_ratings = false
@@ -90,7 +90,7 @@ class YTS
             return false;
         }
 
-        return $data->movie_suggestions;
+        return isset($data->movie_suggestions) ? $data->movie_suggestions : [];
     }
 
     /**
@@ -111,7 +111,7 @@ class YTS
             return false;
         }
 
-        return $data->comments;
+        return isset($data->comments) ? $data->comments : [];
     }
 
     /**
@@ -132,7 +132,7 @@ class YTS
             return false;
         }
 
-        return $data->reviews;
+        return isset($data->reviews) ? $data->reviews : [];
     }
 
     /**
@@ -153,7 +153,7 @@ class YTS
             return false;
         }
 
-        return $data->parental_guides;
+        return isset($data->parental_guides) ? $data->parental_guides : [];
     }
 
     /**
@@ -173,7 +173,7 @@ class YTS
             return false;
         }
 
-        return $data->upcoming_movies;
+        return isset($data->upcoming_movies) ? $data->upcoming_movies : [];
     }
 
     /**
