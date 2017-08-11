@@ -12,7 +12,7 @@
  */
 class YTS {
 	
-	const BASE_URL = 'https://yts.to';
+	const BASE_URL = 'https://yts.ag';
 
     /**
      * ListMovies
