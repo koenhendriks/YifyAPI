@@ -11,7 +11,7 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
 class YTS {
-	
+
 	const BASE_URL = 'https://yts.ag';
 
     /**
@@ -27,7 +27,7 @@ class YTS {
      * @param string $sort_by Sorts the results by chosen value
      * @param string $order_by Orders the results by either Ascending or Descending order
      * @param bool $with_rt_ratings Returns the list with the Rotten Tomatoes rating included
-     * @return bool| array false if no movies were found, an array with movie objects if their are results
+     * @return array|bool false if no movies were found, an array with movie objects if their are results
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function listMovies($quality = 'All', $limit = 20, $query_term = 0, $page = 1, $minimum_rating = 0, $genre = 'All', $sort_by = 'date-added', $order_by = 'desc', $with_rt_ratings = false){
@@ -39,7 +39,7 @@ class YTS {
         if($data->movie_count == 0)
             return false;
 
-        return $data->movies;
+        return isset($data->movies) ? $data->movies : [];
     }
 
     /**
@@ -49,7 +49,7 @@ class YTS {
      * @param int $movie_id
      * @param bool $with_images
      * @param bool $with_cast
-     * @return string
+     * @return array
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function movieDetail($movie_id, $with_images = false, $with_cast=false){
@@ -64,7 +64,7 @@ class YTS {
      * Returns 4 related movies as suggestions for the user
      *
      * @param int $movie_id The ID of the movie
-     * @return array array with movie objects
+     * @return array|bool array with movie objects
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function movieSuggestions($movie_id){
@@ -83,7 +83,7 @@ class YTS {
      * Returns all the comments for the specified movie
      *
      * @param $movie_id
-     * @return array array with comments objects
+     * @return array|bool array with comments objects
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function movieComments($movie_id){
@@ -102,7 +102,7 @@ class YTS {
      * Returns all the parental guide ratings for the specified movie
      *
      * @param $movie_id
-     * @return array array with review objects
+     * @return array|bool array with review objects
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function movieReviews($movie_id){
@@ -121,7 +121,7 @@ class YTS {
      * Returns all the parental guide ratings for the specified movie
      *
      * @param $movie_id
-     * @return array array with parental guide objects
+     * @return array|bool array with parental guide objects
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function movieParentalGuides($movie_id){
@@ -139,7 +139,7 @@ class YTS {
      * List Upcoming
      * Returns the 4 latest upcoming movies
      *
-     * @return array array with movie objects
+     * @return array|bool array with movie objects
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function listUpcoming(){
