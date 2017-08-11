@@ -4,6 +4,7 @@
 This PHP class makes use of the YTS / Yify api v2 which can be found on [YTS.ag]. It's extremely easy to setup and use. For more info see the examples below.
 
 ## Functions
+
 This project is a work in progress. It only uses basic movie functionality for now. Here is the list of supported functions
 
 * List Movies
@@ -15,6 +16,7 @@ This project is a work in progress. It only uses basic movie functionality for n
 * List Upcoming Movies
 
 ## How to use
+
 1. Include the `inc/YTS.php` in your PHP code.
 2. Start using the API.
 
@@ -36,11 +38,9 @@ if($movies) {
 }
 ```
 
-
 Here is a simple example of finding the latest 3 movies, getting their torrent links and list the parental guids.
 
 ```php
-
 include('inc/YTS.php');
 $yts = new YTS();
 
@@ -49,7 +49,7 @@ $movies = $yts->listMovies('All', 3); // All quality, limit 3
 if($movies){
     foreach($movies as $movie){
         echo '<b>'.$movie->title.'</b><br/>';
-        $torrent = $movie->torrents[0];         //First torrent
+        $torrent = $movie->torrents[0];         // First torrent
         echo '<a href="'.$torrent->url.'">'.$torrent->url.'</a> ('.$torrent->size.')<br/>';
 
         if($parentalGuides = $yts->movieParentalGuides($movie->id)){
@@ -82,7 +82,8 @@ if($movies){
 ```
 
 ## License
-See [License.md]
 
-[YTS.ag]:https://yts.ag/api
-[License.md]:License.md
+GPL-3.0. See [License.md] for details.
+
+[YTS.ag]: https://yts.ag/api
+[License.md]: License.md
