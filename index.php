@@ -5,22 +5,22 @@ $yts = new YTS();
 
 $movies = $yts->listMovies('All', 3); // All quality, limit 3
 
-//Did we find movies?
-if($movies){
-    foreach($movies as $movie){
-        echo '<b>'.$movie->title.'</b><br/>';                                               //Movie title from api
-        $torrent = $movie->torrents[0];                                                     //First torrent
-        echo '<a href="'.$torrent->url.'">'.$torrent->url.'</a> ('.$torrent->size.')<br/>'; // Torrent url and size
+// Did we find movies?
+if ($movies) {
+    foreach ($movies as $movie) {
+        echo '<b>' . $movie->title . '</b><br/>';                                                       // Movie title from api
+        $torrent = $movie->torrents[0];                                                                 // First torrent
+        echo '<a href="' . $torrent->url . '">' . $torrent->url . '</a> (' . $torrent->size . ')<br/>'; // Torrent url and size
 
-        if($parentalGuides = $yts->movieParentalGuides($movie->id)){                        //Did we find parental guides?
+        if ($parentalGuides = $yts->movieParentalGuides($movie->id)) {                                  // Did we find parental guides?
             echo 'This movie has:';
 
-            foreach($parentalGuides as $parentalGuide) {
-                echo ' ' . $parentalGuide->type;                                            //Show parental guides
+            foreach ($parentalGuides as $parentalGuide) {
+                echo ' ' . $parentalGuide->type;                                                        // Show parental guides
             }
             echo '<br/>';
         }
-    echo '<br/>';
+        echo '<br/>';
     }
 }
 
