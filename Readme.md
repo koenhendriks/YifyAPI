@@ -1,7 +1,7 @@
 # Yify API
 ### A simple PHP wrapper for the YTS / Yify api (version 2)
 
-This PHP class makes use of the YTS / Yify api v2 which can be found on [YTS.to]. It's extremely easy to setup and use. For more info see the examples below.
+This PHP class makes use of the YTS / Yify api v2 which can be found on [YTS.ag]. It's extremely easy to setup and use. For more info see the examples below.
 
 ## Functions
 This project is a work in progress. It only uses basic movie functionality for now. Here is the list of supported functions
@@ -84,5 +84,4 @@ if($movies){
 ## License
 See License.md
 
-[YTS.to]:https://yts.to/api
-
+[YTS.ag]:https://yts.ag/api
