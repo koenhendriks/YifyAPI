@@ -10,9 +10,10 @@
  * @link http://koenhendriks.com
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
-class YTS {
+class YTS
+{
 
-	const BASE_URL = 'https://yts.ag';
+    const BASE_URL = 'https://yts.ag';
 
     /**
      * ListMovies
@@ -30,14 +31,25 @@ class YTS {
      * @return array|bool false if no movies were found, an array with movie objects if their are results
      * @throws Exception thrown when HTTP request or API request fails
      */
-    public function listMovies($quality = 'All', $limit = 20, $query_term = 0, $page = 1, $minimum_rating = 0, $genre = 'All', $sort_by = 'date-added', $order_by = 'desc', $with_rt_ratings = false){
-        $baseUrl =  self::BASE_URL . '/api/v2/list_movies.json';
-        $parameters = '?limit='.$limit.'&page='.$page.'&quality='.$quality.'&minimum_rating='.$minimum_rating.'&query_term='.$query_term.'&genre='.$genre.'&sort_by='.$sort_by.'&order_by='.$order_by.'&with_rt_ratings='.$with_rt_ratings;
+    public function listMovies(
+        $quality = 'All',
+        $limit = 20,
+        $query_term = 0,
+        $page = 1,
+        $minimum_rating = 0,
+        $genre = 'All',
+        $sort_by = 'date-added',
+        $order_by = 'desc',
+        $with_rt_ratings = false
+    ) {
+        $baseUrl = self::BASE_URL . '/api/v2/list_movies.json';
+        $parameters = '?limit=' . $limit . '&page=' . $page . '&quality=' . $quality . '&minimum_rating=' . $minimum_rating . '&query_term=' . $query_term . '&genre=' . $genre . '&sort_by=' . $sort_by . '&order_by=' . $order_by . '&with_rt_ratings=' . $with_rt_ratings;
 
-        $data = $this->getFromApi($baseUrl.$parameters);
+        $data = $this->getFromApi($baseUrl . $parameters);
 
-        if($data->movie_count == 0)
+        if ($data->movie_count == 0) {
             return false;
+        }
 
         return isset($data->movies) ? $data->movies : [];
     }
@@ -52,11 +64,12 @@ class YTS {
      * @return array
      * @throws Exception thrown when HTTP request or API request fails
      */
-    public function movieDetail($movie_id, $with_images = false, $with_cast=false){
+    public function movieDetail($movie_id, $with_images = false, $with_cast = false)
+    {
         $baseUrl = self::BASE_URL . '/api/v2/movie_details.json';
-        $parameters = '?movie_id='.$movie_id.'&with_images'.$with_images.'&with_cast='.$with_cast;
+        $parameters = '?movie_id=' . $movie_id . '&with_images' . $with_images . '&with_cast=' . $with_cast;
 
-        return $this->getFromApi($baseUrl.$parameters);
+        return $this->getFromApi($baseUrl . $parameters);
     }
 
     /**
@@ -67,13 +80,15 @@ class YTS {
      * @return array|bool array with movie objects
      * @throws Exception thrown when HTTP request or API request fails
      */
-    public function movieSuggestions($movie_id){
-        $baseUrl = self::BASE_URL . '/api/v2/movie_suggestions.json?movie_id='.$movie_id;
+    public function movieSuggestions($movie_id)
+    {
+        $baseUrl = self::BASE_URL . '/api/v2/movie_suggestions.json?movie_id=' . $movie_id;
 
         $data = $this->getFromApi($baseUrl);
 
-        if($data->movie_suggestions_count == 0)
+        if ($data->movie_suggestions_count == 0) {
             return false;
+        }
 
         return $data->movie_suggestions;
     }
@@ -86,13 +101,15 @@ class YTS {
      * @return array|bool array with comments objects
      * @throws Exception thrown when HTTP request or API request fails
      */
-    public function movieComments($movie_id){
-        $baseUrl = self::BASE_URL . '/api/v2/movie_comments.json?movie_id='.$movie_id;
+    public function movieComments($movie_id)
+    {
+        $baseUrl = self::BASE_URL . '/api/v2/movie_comments.json?movie_id=' . $movie_id;
 
         $data = $this->getFromApi($baseUrl);
 
-        if($data->comment_count == 0)
+        if ($data->comment_count == 0) {
             return false;
+        }
 
         return $data->comments;
     }
@@ -105,13 +122,15 @@ class YTS {
      * @return array|bool array with review objects
      * @throws Exception thrown when HTTP request or API request fails
      */
-    public function movieReviews($movie_id){
-        $baseUrl = self::BASE_URL . '/api/v2/movie_reviews.json?movie_id='.$movie_id;
+    public function movieReviews($movie_id)
+    {
+        $baseUrl = self::BASE_URL . '/api/v2/movie_reviews.json?movie_id=' . $movie_id;
 
         $data = $this->getFromApi($baseUrl);
 
-        if($data->review_count == 0)
+        if ($data->review_count == 0) {
             return false;
+        }
 
         return $data->reviews;
     }
@@ -124,13 +143,15 @@ class YTS {
      * @return array|bool array with parental guide objects
      * @throws Exception thrown when HTTP request or API request fails
      */
-    public function movieParentalGuides($movie_id){
-        $baseUrl = self::BASE_URL . '/api/v2/movie_parental_guides.json?movie_id='.$movie_id;
+    public function movieParentalGuides($movie_id)
+    {
+        $baseUrl = self::BASE_URL . '/api/v2/movie_parental_guides.json?movie_id=' . $movie_id;
 
         $data = $this->getFromApi($baseUrl);
 
-        if($data->parental_guide_count == 0)
+        if ($data->parental_guide_count == 0) {
             return false;
+        }
 
         return $data->parental_guides;
     }
@@ -142,13 +163,15 @@ class YTS {
      * @return array|bool array with movie objects
      * @throws Exception thrown when HTTP request or API request fails
      */
-    public function listUpcoming(){
+    public function listUpcoming()
+    {
         $baseUrl = self::BASE_URL . '/api/v2/list_upcoming.json';
 
         $data = $this->getFromApi($baseUrl);
 
-        if($data->upcoming_movies_count == 0)
+        if ($data->upcoming_movies_count == 0) {
             return false;
+        }
 
         return $data->upcoming_movies;
     }
@@ -161,7 +184,8 @@ class YTS {
      * @return mixed $data object with the data from the API
      * @throws Exception thrown when HTTP request or API request fails
      */
-    private function getFromApi($url){
+    private function getFromApi($url)
+    {
         if (!$data = file_get_contents($url)) {
             $error = error_get_last();
 
@@ -169,8 +193,9 @@ class YTS {
         } else {
             $data = json_decode($data);
 
-            if($data->status != 'ok')
+            if ($data->status != 'ok') {
                 throw new Exception("API request failed. Error was: " . $data->status_message);
+            }
 
             return $data->data;
         }
