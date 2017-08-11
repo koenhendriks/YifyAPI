@@ -15,10 +15,10 @@ This project is a work in progress. It only uses basic movie functionality for n
 * List Upcoming Movies
 
 ## How to use
-* Include the YTS.php in youy PHP code.
-* Start using the API.
+1. Include the `inc/YTS.php` in your PHP code.
+2. Start using the API.
 
-##Examples
+## Examples
 
 ### List latest movies with torrents
 Showing all latest movies (default limit of 20)
@@ -68,20 +68,21 @@ if($movies){
  * Example results:
  * 
  * Dinosaur Island
- * https://yts.to/torrent/download/25E4030659954C1D1382FEE2ED37F6F670FB3F97.torrent (693.11 MB)
+ * https://yts.ag/torrent/download/25E4030659954C1D1382FEE2ED37F6F670FB3F97.torrent (693.11 MB)
  *
  * Paris, Texas
- * https://yts.to/torrent/download/F4747ECDDB1E0EF43A299CB781941D18D67C2F68.torrent (2.07 GB)
+ * https://yts.ag/torrent/download/F4747ECDDB1E0EF43A299CB781941D18D67C2F68.torrent (2.07 GB)
  * This movie has: Nudity Violence Profanity Alcohol Frightening
  * 
  * R.E.M. by MTV
- * https://yts.to/torrent/download/1F28D13F40AE91AECC58D649F5F9D84D29321632.torrent (812.23 MB)
+ * https://yts.ag/torrent/download/1F28D13F40AE91AECC58D649F5F9D84D29321632.torrent (812.23 MB)
  */
 
 
 ```
 
 ## License
-See License.md
+See [License.md]
 
 [YTS.ag]:https://yts.ag/api
+[License.md]:License.md
