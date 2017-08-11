@@ -1,0 +1,8 @@
+{
+    "name": "koenhendriks/yify-api",
+    "description": "A simple PHP wrapper for the YTS / Yify api (version 2).",
+    "type": "library",
+    "license": "GPL-3.0",
+    "minimum-stability": "stable",
+    "require": {}
+}
