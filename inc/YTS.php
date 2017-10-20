@@ -61,7 +61,7 @@ class YTS
      * @param int $movie_id
      * @param bool $with_images
      * @param bool $with_cast
-     * @return array
+     * @return Object | bool false if no results
      * @throws Exception thrown when HTTP request or API request fails
      */
     public function movieDetail($movie_id, $with_images = false, $with_cast = false)
@@ -69,7 +69,13 @@ class YTS
         $baseUrl = self::BASE_URL . '/api/v2/movie_details.json';
         $parameters = '?movie_id=' . $movie_id . '&with_images' . $with_images . '&with_cast=' . $with_cast;
 
-        return $this->getFromApi($baseUrl . $parameters);
+        $movieObj = $this->getFromApi($baseUrl . $parameters);
+
+        if(property_exists($movieObj, 'movie'))
+            return $movieObj->movie;
+        
+        return false;
+        
     }
 
     /**
